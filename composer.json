@@ -1,5 +1,5 @@
 {
-    "name": "hehe/ui",
+    "name": "jono/ui",
     "description": "Reusable UI components for Laravel & Livewire",
     "version": "1.1.0",
     "type": "library",

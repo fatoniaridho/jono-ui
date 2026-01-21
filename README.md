@@ -15,7 +15,7 @@ Reusable UI component library untuk Laravel & Livewire.
 ### Via Composer (From GitHub)
 
 ```bash
-composer require hehe/ui
+composer require jono/ui
 ```
 
 ### Local Development
@@ -30,11 +30,11 @@ Jika Anda sedang develop package ini:
     "repositories": [
         {
             "type": "path",
-            "url": "../hehe-ui"
+            "url": "../hehehe-ui"
         }
     ],
     "require": {
-        "hehe/ui": "@dev"
+        "jono/ui": "@dev"
     }
 }
 ```
@@ -42,7 +42,7 @@ Jika Anda sedang develop package ini:
 3. Run composer update:
 
 ```bash
-composer update hehe/ui
+composer update jono/ui
 ```
 
 ### Publish Assets (Optional)
@@ -500,4 +500,5 @@ Contributions are welcome. Feel free to submit a PR.
 - Pagination components
 - Tabs components
 - Accordion components
+
 
