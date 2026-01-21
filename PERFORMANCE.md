@@ -1,6 +1,6 @@
 # Performance & Security Guide
 
-Production-ready patterns for Laravel Livewire applications using Hehe UI.
+Production-ready patterns for Laravel Livewire applications using Jono UI.
 
 ## Performance Optimization
 

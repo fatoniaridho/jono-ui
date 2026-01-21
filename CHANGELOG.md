@@ -1,6 +1,13 @@
 # Changelog
 
-All notable changes to hehe-ui will be documented in this file.
+All notable changes to jono-ui will be documented in this file.
+
+## [1.1.1] - 2026-01-21
+
+### Changed
+- Renamed package to `jono/ui` for Packagist compatibility
+- Updated installation instructions
+- Retained `x-hehe` prefix for backward compatibility and preference
 
 ## [1.1.0] - 2026-01-21
 

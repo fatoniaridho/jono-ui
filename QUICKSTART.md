@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-composer require hehe/ui
+composer require jono/ui
 ```
 
 ## Basic Usage

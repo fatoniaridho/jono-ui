@@ -1,4 +1,4 @@
-# Hehe UI
+# Jono UI
 
 Reusable UI component library untuk Laravel & Livewire.
 
@@ -50,7 +50,39 @@ composer update jono/ui
 Jika Anda ingin customize views:
 
 ```bash
-php artisan vendor:publish --tag=hehe-views
+php artisan vendor:publish --tag=jono-views
+```
+
+## Development
+
+### Structure
+
+```
+jono-ui/
+├── src/
+│   └── JonoUIServiceProvider.php
+├── resources/
+│   ├── views/
+│   │   └── components/
+│   │       ├── button.blade.php
+│   │       ├── card/
+│   │       │   ├── compact.blade.php
+│   │       │   └── info-row.blade.php
+│   │       ├── form/
+│   │       │   ├── input.blade.php
+│   │       │   └── select.blade.php
+│   │       ├── modal.blade.php
+│   │       └── table/
+│   │           ├── compact.blade.php
+│   │           └── row.blade.php
+│   └── assets/
+│       ├── css/
+│       │   └── jono-ui.css
+│       └── js/
+│           └── jono-ui.js
+├── tailwind.config.js
+├── package.json
+└── composer.json
 ```
 
 ## Components
@@ -371,7 +403,7 @@ Anda bisa customize colors dengan override classes:
 ### Structure
 
 ```
-hehe-ui/
+jono-ui/
 ├── src/
 │   └── HeheUIServiceProvider.php
 ├── resources/
