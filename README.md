@@ -30,7 +30,7 @@ Jika Anda sedang develop package ini:
     "repositories": [
         {
             "type": "path",
-            "url": "../hehehe-ui"
+            "url": "../jono-ui"
         }
     ],
     "require": {
