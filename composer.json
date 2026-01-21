@@ -1,6 +1,7 @@
 {
     "name": "jono/ui",
     "description": "Reusable UI components for Laravel & Livewire",
+    "version": "2.0.0",
     "type": "library",
     "license": "MIT",
     "authors": [
