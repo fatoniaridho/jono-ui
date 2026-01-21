@@ -16,14 +16,30 @@
         </label>
     @endif
     
-    <input 
-        {{ $attributes->merge([
-            'class' => $disabled 
-                ? 'w-full rounded-lg border border-zinc-300 bg-zinc-50 px-3 py-2 text-sm text-zinc-500 cursor-not-allowed outline-none'
-                : 'w-full rounded-lg border border-zinc-300 ring-1 ring-zinc-200 bg-white px-3 py-2 text-sm outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 transition-shadow'
-        ])->except(['label', 'error', 'hint', 'required']) }}
-        @if($disabled) disabled @endif
-    >
+    <div class="relative">
+        @if(isset($prepend))
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 text-muted-foreground pointer-events-none">
+                {{ $prepend }}
+            </div>
+        @endif
+
+        <input 
+            {{ $attributes->merge([
+                'class' => ($disabled 
+                    ? 'flex h-10 w-full rounded-md border border-input bg-muted px-3 py-2 text-sm ring-offset-background cursor-not-allowed opacity-50'
+                    : 'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50') 
+                    . (isset($prepend) ? ' pl-10' : '') 
+                    . (isset($append) ? ' pr-10' : '')
+            ])->except(['label', 'error', 'hint', 'required']) }}
+            @if($disabled) disabled @endif
+        >
+
+        @if(isset($append))
+            <div class="absolute inset-y-0 right-0 flex items-center pr-3 text-muted-foreground pointer-events-none">
+                {{ $append }}
+            </div>
+        @endif
+    </div>
     
     @if($hint)
         <p class="text-[10px] text-zinc-400">{{ $hint }}</p>

@@ -29,8 +29,13 @@ public function openModal($id)
 ### Form Input Optimization
 
 ```blade
-<x-hehe::form.input wire:model.defer="name" />
+<!-- Livewire 3 defers requests by default -->
+<x-hehe::form.input wire:model="name" />
+
+<!-- Update only on blur -->
 <x-hehe::form.input wire:model.blur="email" />
+
+<!-- Real-time updates with debounce -->
 <x-hehe::form.input wire:model.live.debounce.300ms="search" />
 ```
 
@@ -177,5 +182,5 @@ public function students()
 - Use database transactions for critical operations
 - Add loading states to all buttons
 - Validate all inputs server-side
-- Use wire:model.defer for forms
+- Leverage Livewire 3 default defer behavior for forms
 - Implement debounce for search inputs

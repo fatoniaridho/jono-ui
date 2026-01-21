@@ -2,6 +2,6 @@
     'compact' => true,
 ])
 
-<tr {{ $attributes->merge(['class' => 'border-b border-zinc-200 hover:bg-zinc-50 transition-colors']) }}>
+<tr {{ $attributes->merge(['class' => 'border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted']) }}>
     {{ $slot }}
 </tr>

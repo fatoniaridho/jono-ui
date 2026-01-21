@@ -6,6 +6,43 @@
 composer require jono/ui
 ```
 
+## Setup (Crucial for v2.0+)
+
+Since v2.0, Jono UI uses a Semantic Theming system. You must configure Tailwind to use the provided preset.
+
+### 1. Configure Tailwind
+
+Update `tailwind.config.js`:
+
+```javascript
+import jonoPreset from './vendor/jono/ui/tailwind.preset.js'
+
+export default {
+    presets: [jonoPreset],
+    content: [
+        './resources/**/*.blade.php',
+        './resources/**/*.js',
+        './vendor/jono/ui/resources/views/**/*.blade.php',
+    ],
+    theme: {
+        extend: {},
+    },
+    plugins: [],
+}
+```
+
+### 2. Import CSS Theme
+
+Add this to your `app.css`:
+
+```css
+@import '../../vendor/jono/ui/resources/css/jono-ui-theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
 ## Basic Usage
 
 ### Button
@@ -69,144 +106,8 @@ public bool $showModal = false;
 ### Card
 
 ```blade
-<x-hehe::card.compact title="User Info" icon="user">
+<x-hehe::card.compact title="User Info">
     <x-hehe::card.info-row label="Name" value="John Doe" />
     <x-hehe::card.info-row label="Email" value="john@example.com" />
 </x-hehe::card.compact>
 ```
-
-## Complete Example
-
-### Livewire Component
-
-```php
-<?php
-
-namespace App\Livewire;
-
-use Livewire\Component;
-use App\Models\User;
-
-class UserManagement extends Component
-{
-    public bool $showAddModal = false;
-    public bool $editMode = false;
-    public $form = [
-        'name' => '',
-        'email' => '',
-        'active' => 1,
-    ];
-
-    public function edit($id)
-    {
-        $user = User::findOrFail($id);
-        $this->form = $user->toArray();
-        $this->editMode = true;
-        $this->showAddModal = true;
-    }
-
-    public function save()
-    {
-        $this->validate([
-            'form.name' => 'required|string|max:255',
-            'form.email' => 'required|email|unique:users,email,' . ($this->editMode ? $this->form['id'] : ''),
-            'form.active' => 'required|boolean',
-        ]);
-
-        if ($this->editMode) {
-            User::find($this->form['id'])->update($this->form);
-        } else {
-            User::create($this->form);
-        }
-
-        $this->showAddModal = false;
-        $this->reset('form', 'editMode');
-    }
-
-    public function render()
-    {
-        return view('livewire.user-management', [
-            'users' => User::all(),
-        ]);
-    }
-}
-```
-
-### View
-
-```blade
-<div>
-    <div class="flex justify-between items-center mb-4">
-        <h1 class="text-2xl font-bold">Users</h1>
-        <x-hehe::button wire:click="$set('showAddModal', true)" icon="plus">
-            Add User
-        </x-hehe::button>
-    </div>
-
-    <x-hehe::table.compact :headers="['Name', 'Email', 'Status', 'Actions']">
-        @foreach($users as $user)
-            <x-hehe::table.row>
-                <td class="px-2 py-1.5">{{ $user->name }}</td>
-                <td class="px-2 py-1.5">{{ $user->email }}</td>
-                <td class="px-2 py-1.5">
-                    <span class="px-2 py-1 text-xs rounded-full {{ $user->active ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800' }}">
-                        {{ $user->active ? 'Active' : 'Inactive' }}
-                    </span>
-                </td>
-                <td class="px-2 py-1.5">
-                    <x-hehe::button size="sm" wire:click="edit({{ $user->id }})">
-                        Edit
-                    </x-hehe::button>
-                </td>
-            </x-hehe::table.row>
-        @endforeach
-    </x-hehe::table.compact>
-
-    <x-hehe::modal 
-        title="{{ $editMode ? 'Edit User' : 'Add User' }}" 
-        modalProperty="showAddModal"
-        maxWidth="md">
-        
-        <form wire:submit="save">
-            <div class="space-y-4">
-                <x-hehe::form.input 
-                    label="Name"
-                    wire:model="form.name"
-                    required
-                    error="{{ $errors->first('form.name') }}" />
-                
-                <x-hehe::form.input 
-                    label="Email"
-                    type="email"
-                    wire:model="form.email"
-                    required
-                    error="{{ $errors->first('form.email') }}" />
-                
-                <x-hehe::form.select 
-                    label="Status"
-                    wire:model="form.active"
-                    required>
-                    <option value="1">Active</option>
-                    <option value="0">Inactive</option>
-                </x-hehe::form.select>
-            </div>
-        </form>
-        
-        <x-slot:footer>
-            <x-hehe::button wire:click="save" variant="primary">
-                {{ $editMode ? 'Update' : 'Create' }}
-            </x-hehe::button>
-            <x-hehe::button variant="white" wire:click="$set('showAddModal', false)">
-                Cancel
-            </x-hehe::button>
-        </x-slot:footer>
-    </x-hehe::modal>
-</div>
-```
-
-## Next Steps
-
-- Read the full README.md for detailed documentation
-- Check CHANGELOG.md for version history
-- Customize components as needed
-- Contribute new components

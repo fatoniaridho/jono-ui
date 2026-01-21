@@ -9,31 +9,37 @@
 ])
 
 @php
-    $baseClasses = 'inline-flex items-center justify-center gap-2 font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-offset-2';
+    $baseClasses = 'inline-flex items-center justify-center gap-2 font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50';
     
+    // Semantic mappings matching tailwind.preset.js
     $variantClasses = [
-        'primary' => 'bg-[#164B4D] text-white shadow-sm hover:bg-[#123d3f] focus:ring-[#164B4D] disabled:opacity-50 disabled:cursor-not-allowed',
-        'secondary' => 'bg-[#FDCF01] text-zinc-900 shadow-sm hover:bg-[#e4ba01] focus:ring-[#FDCF01] disabled:opacity-50 disabled:cursor-not-allowed',
-        'black' => 'bg-zinc-900 text-white shadow-sm hover:bg-zinc-800 focus:ring-zinc-900 disabled:opacity-50 disabled:cursor-not-allowed',
-        'white' => 'border border-zinc-300 bg-white text-zinc-700 shadow-sm hover:bg-zinc-50 focus:ring-zinc-500 disabled:opacity-50 disabled:cursor-not-allowed',
-        'danger' => 'bg-red-600 text-white shadow-sm hover:bg-red-500 focus:ring-red-600 disabled:opacity-50 disabled:cursor-not-allowed',
+        'primary' => 'bg-primary text-primary-foreground shadow hover:bg-primary/90',
+        'secondary' => 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
+        'outline' => 'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
+        'ghost' => 'hover:bg-accent hover:text-accent-foreground',
+        'danger' => 'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
+        'link' => 'text-primary underline-offset-4 hover:underline',
+        
+        // Backward compatibility
+        'white' => 'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground', // Maps to outline
+        'black' => 'bg-slate-950 text-white shadow hover:bg-slate-950/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90',
     ];
     
     $sizeClasses = [
-        'sm' => 'px-3 py-1.5 text-xs rounded-lg',
-        'md' => 'px-4 py-2 text-sm rounded-lg',
-        'lg' => 'px-6 py-3 text-base rounded-lg',
-        'icon' => 'p-2 rounded-lg',
+        'sm' => 'h-8 px-3 text-xs rounded-md',
+        'md' => 'h-9 px-4 py-2 text-sm rounded-md',
+        'lg' => 'h-10 px-8 text-base rounded-md',
+        'icon' => 'h-9 w-9 p-0',
     ];
     
     $iconSizes = [
-        'sm' => 'size-3',
+        'sm' => 'size-3.5',
         'md' => 'size-4',
         'lg' => 'size-5',
-        'icon' => 'size-5',
+        'icon' => 'size-4',
     ];
     
-    $classes = $baseClasses . ' ' . $variantClasses[$variant] . ' ' . $sizeClasses[$size];
+    $classes = $baseClasses . ' ' . ($variantClasses[$variant] ?? $variantClasses['primary']) . ' ' . $sizeClasses[$size];
 @endphp
 
 @if($href)

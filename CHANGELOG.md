@@ -2,6 +2,34 @@
 
 All notable changes to jono-ui will be documented in this file.
 
+## [2.0.0] - 2026-01-21
+
+### Major Features
+- **Semantic Theming**: Introduced `jono-ui-theme.css` and `tailwind.preset.js`.
+- **Light/Dark Mode**: Automatic support via CSS variables.
+
+### New Layout Components
+- `Sidebar`: Complete responsive sidebar system.
+- `Menubar`: Desktop navigation menu.
+- `Tabs`: Accessible tab interface.
+
+### New UI Components
+- `Toaster` (Sonner-like): Global notifications.
+- `Avatar`: Profile image with fallback.
+- `Badge`: Status tags.
+- `Spinner`: Loading indicators.
+- `Toggle Group`: Button selection group.
+- `Item` & `Empty`: Utility components.
+
+### Updates
+- **Breaking**: All components now rely on CSS variables (primary, sidebar, etc) instead of hardcoded colors.
+- `Input`: Added prepend/append slots.
+- `Button`: Visual updates to match new theme.
+
+### Migration Guide
+- Ensure you follow the new `QUICKSTART.md` to setup Tailwind Preset.
+- If overriding colors, use CSS variables in `:root` instead of modifying blade files.
+
 ## [1.1.1] - 2026-01-21
 
 ### Changed

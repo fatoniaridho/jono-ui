@@ -5,13 +5,13 @@
 
 @php
     $typeClasses = [
-        'info' => 'bg-blue-50 border-blue-200 text-blue-800',
-        'success' => 'bg-green-50 border-green-200 text-green-800',
-        'warning' => 'bg-yellow-50 border-yellow-200 text-yellow-800',
-        'error' => 'bg-red-50 border-red-200 text-red-800',
+        'info' => 'bg-secondary/20 text-secondary-foreground border-secondary/20 [&>svg]:text-secondary-foreground',
+        'success' => 'bg-green-50 text-green-900 border-green-200 dark:bg-green-900/10 dark:text-green-300 dark:border-green-900', // Keep specific green for success usually
+        'warning' => 'bg-yellow-50 text-yellow-900 border-yellow-200 dark:bg-yellow-900/10 dark:text-yellow-300 dark:border-yellow-900',
+        'error' => 'bg-destructive/15 text-destructive border-destructive/50 dark:border-destructive [&>svg]:text-destructive',
     ];
     
-    $classes = 'rounded-lg border p-4 ' . $typeClasses[$type];
+    $classes = 'relative w-full rounded-lg border px-4 py-3 text-sm flex gap-3 items-start ' . $typeClasses[$type];
 @endphp
 
 <div 

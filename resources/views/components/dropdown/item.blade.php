@@ -5,8 +5,8 @@
 
 @php
     $classes = $active
-        ? 'block w-full text-left px-4 py-2 text-sm text-zinc-900 bg-zinc-50'
-        : 'block w-full text-left px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 transition-colors';
+        ? 'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors bg-accent text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50'
+        : 'relative flex w-full cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50';
 @endphp
 
 @if($href)
